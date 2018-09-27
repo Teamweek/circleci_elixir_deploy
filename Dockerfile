@@ -38,10 +38,9 @@ RUN mkdir -p $HOME/cache; \
     ./configure --prefix ~/cache/otp-$OTP_VERSION --without-javac; \
     make && make install; \
     wget "https://github.com/elixir-lang/elixir/releases/download/v$ELIXIR_VERSION/Precompiled.zip"; \
-    unzip ./Precompiled.zip -d ./elixir-$ELIXIR_VERSION; \
+    unzip ./Precompiled.zip -d ./elixir-$ELIXIR_VERSION
 
 ENV PATH "/usr/local/bundle/bin:/usr/local/bundle/gems/bin:$HOME/cache/otp-$OTP_VERSION/bin:$HOME/cache/elixir-$ELIXIR_VERSION/bin:$PATH"
-
 
 RUN mix local.rebar --force; \
     mix local.hex --force
