@@ -40,3 +40,6 @@ RUN mkdir -p $HOME/cache; \
     export PATH="/usr/local/bundle/bin:/usr/local/bundle/gems/bin:$HOME/cache/otp-$OTP_VERSION/bin:$HOME/cache/elixir-$ELIXIR_VERSION/bin:$PATH"
 
 USER circleci
+
+RUN mix local.rebar --force; \
+    mix local.hex --force
