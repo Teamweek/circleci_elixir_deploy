@@ -28,6 +28,8 @@ RUN gem install fpm; \
 ENV OTP_VERSION 20.0
 ENV ELIXIR_VERSION 1.6.0
 
+USER circleci
+
 RUN mkdir -p $HOME/cache; \
     cd $HOME/cache; \
     wget "http://www.erlang.org/download/otp_src_$OTP_VERSION.tar.gz"; \
@@ -37,9 +39,9 @@ RUN mkdir -p $HOME/cache; \
     make && make install; \
     wget "https://github.com/elixir-lang/elixir/releases/download/v$ELIXIR_VERSION/Precompiled.zip"; \
     unzip ./Precompiled.zip -d ./elixir-$ELIXIR_VERSION; \
-    export PATH="/usr/local/bundle/bin:/usr/local/bundle/gems/bin:$HOME/cache/otp-$OTP_VERSION/bin:$HOME/cache/elixir-$ELIXIR_VERSION/bin:$PATH"
 
-USER circleci
+ENV PATH "/usr/local/bundle/bin:/usr/local/bundle/gems/bin:$HOME/cache/otp-$OTP_VERSION/bin:$HOME/cache/elixir-$ELIXIR_VERSION/bin:$PATH"
+
 
 RUN mix local.rebar --force; \
     mix local.hex --force
