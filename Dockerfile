@@ -22,10 +22,10 @@ RUN echo "deb [trusted=yes] s3://teamweek-private-packages.s3.amazonaws.com/debi
     echo -e "AccessKeyId = $AWS_ACCESS_KEY_ID\nSecretAccessKey = $AWS_SECRET_ACCESS_KEY\nToken = ''" \
       | tee /etc/apt/s3auth.conf > /dev/null
 
+USER circleci
+
 RUN gem install fpm; \
     gem install deb-s3
-
-USER circleci
 
 ENV OTP_VERSION 20.0
 ENV ELIXIR_VERSION 1.6.0
