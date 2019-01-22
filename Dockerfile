@@ -27,8 +27,8 @@ USER circleci
 RUN gem install fpm; \
     gem install deb-s3
 
-ENV OTP_VERSION 20.0
-ENV ELIXIR_VERSION 1.6.0
+ENV OTP_VERSION 21.2.3
+ENV ELIXIR_VERSION 1.8.0
 
 RUN mkdir -p /home/circleci/tools; \
     cd /home/circleci/tools; \
